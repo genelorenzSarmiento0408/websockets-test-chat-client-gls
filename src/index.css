@@ -53,9 +53,9 @@ button {
   width: 20%;
 }
 .message {
+  flex-direction: row;
   align-items: center;
   justify-content: center;
-  outline: 1px solid green;
   margin-top: auto;
   flex-shrink: 0;
 }
@@ -63,6 +63,5 @@ button {
 @media screen and (min-width: 600px) {
   .message {
     text-align: left;
-    flex-direction: row;
   }
 }
