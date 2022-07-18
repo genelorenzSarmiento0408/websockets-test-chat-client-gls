@@ -1,19 +1,15 @@
-import { useState, useEffect } from "react";
+import { nanoid } from "nanoid";
 
-export default function Room({ username, roomId, socket }) {
-  const [message, setMessage] = useState("");
-  const [hadMessage, setHadMessage] = useState(false);
-  const [messages, setMessages] = useState([]);
-
-  useEffect(() => {
-    socket.addEventListener("message", (e) => {
-      setMessages(JSON.parse(e.data));
-      console.log(messages);
-    });
-  }, [hadMessage]);
+export default function Room({
+  username,
+  roomId,
+  socket,
+  messages,
+  message,
+  setMessage,
+}) {
   function sendMessage(e) {
     e.preventDefault();
-    setHadMessage(true);
     try {
       socket.send(JSON.stringify({ username, roomId, message }));
     } catch (err) {
@@ -26,13 +22,25 @@ export default function Room({ username, roomId, socket }) {
       <div className="info">
         <h2>Room ID: {roomId}</h2>
         <h2>Your username is {username}</h2>
-      </div>{" "}
-      {messages.map((message) => (
-        <p>
-          {message.username}: {message.message}
-        </p>
-      ))}
-      <form onSubmit={sendMessage} class="message">
+      </div>
+      <div className="messages">
+        {messages.map((message) => (
+          <>
+            <p className="message-username">
+              {message.username !== username && message.username}
+            </p>
+            <p
+              key={nanoid()}
+              className={`message ${
+                message.username === username && "message-own"
+              }`}
+            >
+              {message.message}
+            </p>
+          </>
+        ))}
+      </div>
+      <form onSubmit={sendMessage} className="message-form">
         <input
           type="text"
           onChange={(e) => setMessage(e.target.value)}

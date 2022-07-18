@@ -13,12 +13,22 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
-
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  margin: 0.25em;
+}
+p {
+  margin: 0.25em;
+}
 .App {
   display: flex;
   justify-content: center;
   flex-direction: column;
-  min-height: 100vh;
+  height: 100vh;
   text-align: center;
 }
 /* form styling */
@@ -26,13 +36,17 @@ form {
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 1em;
+  gap: 0.5em;
 }
-input[type="text"] {
+input,
+select {
   padding: 1em 2em;
   border-radius: 5px;
 }
+
+/* buttons */
 button {
+  margin-top: 1em;
   padding: 0.75em 3em;
   border-radius: 5px;
   background-color: white;
@@ -42,26 +56,67 @@ button {
   font-weight: bold;
   cursor: pointer;
 }
-.info {
+.button-disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  user-select: none;
+}
+.main {
   flex: 1;
+}
+.messages {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 1em;
+  flex: 1;
+  scroll-behavior: smooth;
+  overflow-x: hidden;
+  overflow-y: scroll;
+}
+
+.message {
+  font-size: large;
+  padding: 0.75em 0.5em;
+  border-radius: 10px;
+  color: white;
+  align-self: flex-start;
+  background-color: gray;
+}
+.message-username {
+  font-weight: bold;
+  align-self: flex-start;
+}
+/* message form/sending the message */
+.message-form {
+  flex-direction: row;
+  align-items: center;
+  height: 5em;
+  justify-content: center;
+  margin-top: auto;
+  flex-shrink: 0;
 }
 .input-message {
   width: 60%;
 }
 .send-message {
   padding: 0.75em 0em;
+  align-self: center;
+  margin-top: 0;
   width: 20%;
 }
-.message {
-  flex-direction: row;
-  align-items: center;
-  justify-content: center;
-  margin-top: auto;
-  flex-shrink: 0;
+.message-own {
+  background-color: hsl(212, 100%, 50%);
+  align-self: flex-end;
 }
-
+/* error */
+.error {
+  color: red;
+  font-size: 1.75rem;
+  font-weight: bold;
+}
 @media screen and (min-width: 600px) {
-  .message {
+  .message-form {
     text-align: left;
   }
 }
