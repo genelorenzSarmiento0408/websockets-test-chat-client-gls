@@ -33,7 +33,11 @@ function App() {
   return (
     <div className="App">
       <h1>
-        A messaging app by Gene Lorenz Sarmiento created in the MFRPW Stack
+        A messaging app by Gene Lorenz Sarmiento created in the MFRPW Stack{" "}
+        <br /> (You need to type in order for it to re-render the messages ){" "}
+        <br />
+        PS: This is NOT a realtime application, my app defeats the purpose of a
+        websocket
       </h1>
       {isLoggedIn && !error ? (
         <Room

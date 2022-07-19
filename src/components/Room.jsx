@@ -1,3 +1,4 @@
+import { Fragment } from "react";
 import { nanoid } from "nanoid";
 
 export default function Room({
@@ -25,19 +26,18 @@ export default function Room({
       </div>
       <div className="messages">
         {messages.map((message) => (
-          <>
+          <Fragment key={nanoid()}>
             <p className="message-username">
               {message.username !== username && message.username}
             </p>
             <p
-              key={nanoid()}
               className={`message ${
                 message.username === username && "message-own"
               }`}
             >
               {message.message}
             </p>
-          </>
+          </Fragment>
         ))}
       </div>
       <form onSubmit={sendMessage} className="message-form">
